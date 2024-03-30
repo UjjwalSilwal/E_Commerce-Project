@@ -4,10 +4,12 @@
   "description": "E_commerce by MERN",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "backend": "nodemon backend/index.js",
+    "frontend":"npm run dev --prefix frontend",
+    "dev":"concurrently \"npm run frontend\" \"npm run backend"
   },
   "keywords": [],
-  "author": "",
+  "author": "Ujjwal Silwal",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
