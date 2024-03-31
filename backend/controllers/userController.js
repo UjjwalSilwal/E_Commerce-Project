@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
+import bcrypt from "bcryptjs"
 
 const createUser = asyncHandler( async (req, res)=> {
     
@@ -10,11 +11,16 @@ const createUser = asyncHandler( async (req, res)=> {
     }
 
     const userExists = await User.findOne({ email })
-    if(userExists) res.status(400).send("User already exists")
+    if (userExists) res.status(400).send("User already exists")
+    
+    //SALT = it the random generated numbers and alphabet to hash the password
+
+    const salt = await bcrypt.genSalt(15)
+    const hashedPassword = await bcrypt.hash(password,salt)
 
     // How to create a user
 
-    const newUser = new User({username,email,password})
+    const newUser = new User({username,email,password: hashedPassword})
 
     try {
         await newUser.save()
