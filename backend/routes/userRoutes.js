@@ -1,11 +1,13 @@
 // Once we define this We are able to create a user delete a user
 
 import express from "express";
-import { createUser,loginUser,logoutCurrentUser } from "../controllers/userController.js";
+import { createUser, loginUser, logoutCurrentUser ,getAllUsers} from "../controllers/userController.js";
+import { authenticate,authorizeAdmin } from "../middlewares/authMiddleware.js";
 
 const router = express.Router()
 
-router.route("/").post(createUser)
+// For create, authenticate, authorizeAdmin user
+router.route("/").post(createUser).get(authenticate,authorizeAdmin, getAllUsers)
 
 // For log-in the user
 router.post('/auth', loginUser)
