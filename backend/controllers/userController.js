@@ -1,6 +1,7 @@
 import User from "../models/userModel.js";
 import asyncHandler from "../middlewares/asyncHandler.js";
 import bcrypt from "bcryptjs"
+import createToken from '../utils/createToken.js'
 
 const createUser = asyncHandler( async (req, res)=> {
     
@@ -24,6 +25,7 @@ const createUser = asyncHandler( async (req, res)=> {
 
     try {
         await newUser.save()
+        createToken(res, newUser._id)  // to save cookie or get cookie for user details
 
         res.status(201)
             .json({
