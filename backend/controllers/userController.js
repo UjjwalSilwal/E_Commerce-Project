@@ -13,7 +13,7 @@ const createUser = asyncHandler( async (req, res)=> {
     const userExists = await User.findOne({ email })
     if (userExists) res.status(400).send("User already exists")
     
-    //SALT = it the random generated numbers and alphabet to hash the password
+    //SALT = it the random generated with (numbers, alphabet and symbols) to hash the password
 
     const salt = await bcrypt.genSalt(15)
     const hashedPassword = await bcrypt.hash(password,salt)
