@@ -58,9 +58,9 @@ const loginUser = asyncHandler(async (req, res) => {
             res.status(201)
             .json({
                 _id: existingUser._id,
-                username: newUser.username,
-                email: newUser.email,
-                isAdmin: newUser.isAdmin,
+                username: existingUser.username,
+                email: existingUser.email,
+                isAdmin: existingUser.isAdmin,
         })
             return // Exit the function after sending the response
         }
