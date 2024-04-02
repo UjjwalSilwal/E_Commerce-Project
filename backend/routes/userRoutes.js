@@ -27,7 +27,7 @@ router.route('/profile')
     .get(authenticate, getCurrentUserProfile)
     .put(authenticate, updateCurrentUserProfile)
 
-// Updating, Deleting User From the Admin Side
+// Get, Updating, Deleting User From the Admin Side
 // Admin Routes
 router.route('/:id')
     .delete(authenticate, authorizeAdmin, deleteUserById)
