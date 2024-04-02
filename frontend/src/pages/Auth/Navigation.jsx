@@ -40,14 +40,71 @@ const Navigation = () => {
         id="navigation-container"
     >
         <div className="flex flex-col justify-center space-y-4">
+
+            {/*For HOME */}
             <Link
                 to="/"
                 className="flex items-center transition-transform transform hover:translate-x-2"
             >
-                <AiOutlineHome className="mr-2 mt-[3rem]" size={26} />
+                <AiOutlineHome className="mt-[3rem]" size={26} />
                 <span className="hidden nav-item-name mt-[3rem]">HOME</span>{" "}
             </Link>
+
+             {/*For SHOP */}
+             <Link
+                to="/shop"
+                className="flex items-center transition-transform transform hover:translate-x-2"
+            >
+                <AiOutlineShopping className="mt-[3rem]" size={26} />
+                <span className="hidden nav-item-name mt-[3rem]">SHOP</span>{" "}
+            </Link>
+
+             {/*For CART */}
+             <Link
+                to="/cart"
+                className="flex items-center transition-transform transform hover:translate-x-2"
+            >
+                <AiOutlineShoppingCart className="mt-[3rem]" size={26} />
+                <span className="hidden nav-item-name mt-[3rem]">CART</span>{" "}
+            </Link>
+
+             {/*For FAVOURITES */}
+             <Link
+                to="/favourite"
+                className="flex items-center transition-transform transform hover:translate-x-2"
+            >
+                <FaHeart className="mt-[3rem]" size={26} />
+                <span className="hidden nav-item-name mt-[3rem]">FAV</span>{" "}
+            </Link>
+            
         </div>
+
+        <ul>
+
+             {/*For LOGIN */}
+            <li>
+            <Link
+                to="/login"
+                className="flex items-center transition-transform transform hover:translate-x-2"
+            >
+                <AiOutlineLogin className="mt-[3rem]" size={26} />
+                <span className="hidden nav-item-name mt-[3rem]">LOGIN</span>{" "}
+            </Link>
+            </li>
+
+             {/*For REGISTER */}
+            <li>
+            <Link
+                to="/register"
+                className="flex items-center transition-transform transform hover:translate-x-2"
+            >
+                <AiOutlineUserAdd className="mt-[3rem]" size={26} />
+                <span className="hidden nav-item-name mt-[3rem]">REGISTER</span>{" "}
+            </Link>
+            </li>
+
+        </ul>
+
     </div>
 };
 
