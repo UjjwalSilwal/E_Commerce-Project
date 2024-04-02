@@ -9,12 +9,20 @@ export const usesrApiSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body:data,
             })
+        }),
+
+        logout: buider.mutation({        
+            query: () => ({
+                url: `${USERS_URL}/logout`,
+                method: "POST",
+                
+            }),
         })
     })
 })
 
 //`use${Login}Mutation`
 
-export const {useLoginMutation} = usesrApiSlice
+export const {useLoginMutation,useLogoutMutation} = usesrApiSlice
 
 //1: http://localhost:5000   2:/api/users/auth
