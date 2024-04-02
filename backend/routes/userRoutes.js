@@ -1,7 +1,15 @@
 // Once we define this We are able to create a user delete a user
 
 import express from "express";
-import { createUser, loginUser, logoutCurrentUser ,getAllUsers,getCurrentUserProfile,updateCurrentUserProfile} from "../controllers/userController.js";
+import {
+    createUser,
+    loginUser,
+    logoutCurrentUser,
+    getAllUsers,
+    getCurrentUserProfile,
+    updateCurrentUserProfile,
+    deleteUserById
+} from "../controllers/userController.js";
 import { authenticate,authorizeAdmin } from "../middlewares/authMiddleware.js";
 
 const router = express.Router()
@@ -14,5 +22,10 @@ router.post('/auth', loginUser)
 router.post('/logout', logoutCurrentUser)
 
 router.route('/profile').get(authenticate,getCurrentUserProfile).put(authenticate,updateCurrentUserProfile)
+
+// Updating, Deleting User From the Admin Side
+// Admin Routes
+router.route('/:id').delete(authenticate,authorizeAdmin,deleteUserById)
+
 
 export default router;
