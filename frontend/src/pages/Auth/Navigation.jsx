@@ -11,6 +11,9 @@ import { FaHeart } from 'react-icons/fa'
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { useLoginMutation } from "../../redux/api/usersApiSlice";
+import { logout } from "../../redux/features/auth/authSlice";
+
 
 import './Navigation.css'
 
@@ -36,6 +39,21 @@ const Navigation = () => {
     const closeSidebar = () => {
         setShowSidebar(false)
     }
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const [logoutApiCall] = useLoginMutation()
+     
+    const logoutHandler = async () => {
+        try {
+          await logoutApiCall().unwrap();
+          dispatch(logout());
+          navigate("/login");
+        } catch (error) {
+          console.error(error);
+        }
+      };
 
     return <div style={{ zIndex: 999 }} className={`${showSidebar ? "hidden" : "flex"}
      xl:flex lg-flex md:hidden sm:hidden flex-col justify-between p-4 text-white
