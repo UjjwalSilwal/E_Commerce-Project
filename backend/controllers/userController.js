@@ -107,7 +107,9 @@ const updateCurrentUserProfile = asyncHandler(async(req, res) => {
         user.email = req.body.email || user.email
 
         if (req.body.password) {
-            user.password = req.body.password
+            const salt = await bcrypt.genSalt(15)
+            const hashedPassword = await bcrypt.hash(req.body.password,salt)
+            user.password = hashedPassword
         }
 
         const updatedUser = await user.save()
