@@ -10,10 +10,15 @@ import { FaHeart } from 'react-icons/fa'
 
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import './Navigation.css'
 
 
 const Navigation = () => {
+
+  const { userInfo } = useSelector((state) => state.auth);
+
 
     // for dropdown menu
     const [dropdownOpen, setDropdownOpen] = useState(false)
@@ -78,6 +83,21 @@ const Navigation = () => {
             </Link>
             
         </div>
+
+
+        <div className="relative">
+        <button
+          onClick={toggleDropdown}
+          className="flex items-center text-gray-800 focus:outline-none"
+        >
+          {userInfo ? (
+            <span className="text-white">{userInfo.username}</span>
+          ) : (
+            <></>
+                )}
+            </button>
+            </div>
+                
 
         <ul>
 
