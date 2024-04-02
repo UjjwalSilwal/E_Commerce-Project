@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import {  useLocation, useNavigate } from "react-router-dom";
+import { Link ,useLocation, useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import Loader from "../../components/Loader";
 import { useLoginMutation } from "../../redux/api/usersApiSlice";
-//import { setCredentials } from "../../redux/features/auth/authSlice";
+import {setCredentials} from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify"
-import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -49,7 +48,7 @@ const Login = () => {
         <div className="mr-[4rem] mt-[5rem]">
           <h1 className="mb-4 text-2xl font-semibold text-white">Sign In</h1>
 
-          <form onSubmit={submitHandler} className="container w-[40rem]">
+          <form onSubmit={submitHandler} className="container w-[40rem]" autoComplete="off">
 
             {/*For Email placeholder */}
             <div className="my-[2rem]">
@@ -66,6 +65,7 @@ const Login = () => {
                 placeholder="Enter email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="off"
               />
             </div>
 
