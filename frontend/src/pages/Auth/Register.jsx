@@ -26,15 +26,33 @@ const Register = () => {
         if (userInfo) {
             navigate(redirect)
         }
-    },[navigate,redirect,userInfo])
+    }, [navigate, redirect, userInfo])
+    
+    const submitHandler = async (e) => {
+        e.preventDefault();
+    
+        if (password !== confirmPassword) {
+          toast.error("Passwords do not match");
+        } else {
+          try {
+            const res = await register({ username, email, password }).unwrap();
+            dispatch(setCredentials({ ...res }));
+            navigate(redirect);
+            toast.success("User successfully registered");
+          } catch (err) {
+            console.log(err);
+            toast.error(err.data.message);
+          }
+        }
+      };
 
 
   return (
     <section className="pl=[10rem] flex flex-wrap">
-          <div className="mr-[4rem] mt-[5rem] ml-96 ">
+          <div className="mr-[4rem] ml-96">
               <h1 className="mb-4 text-2xl font-semibold text-white">Register</h1>
 
-              <form className="container w-[40rem]">
+              <form onSubmit={submitHandler} className="container w-[40rem]">
                   
                   <div className="my-[2rem]">
                       <label htmlFor="name" className="block text-sm font-medium text-white">Name</label>
@@ -58,10 +76,31 @@ const Register = () => {
                       <label htmlFor="confirmPassword" className="block text-sm font-medium text-white">Confirm Password</label>
                       <input type="password" id="confirmPassword" className="w-full p-2 mt-1 border rounded"
                       placeholder="Confirm Password" value={confirmPassword} onChange={e=>setConfirmPassword(e.target.value)} />
-                  </div>
+                  </div>    
+
+                  <button
+            disabled={isLoading}
+            type="submit"
+            className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
+          >
+            {isLoading ? "Registering..." : "Register"}
+                  </button>
+                  
+            {isLoading && <Loader/>}
 
               </form>
 
+              <div className="mt-4">
+          <p className="text-white">
+            Already have an account?{" "}
+            <Link
+              to={redirect ? `/login?redirect=${redirect}` : "/login"}
+              className="text-pink-500 hover:underline"
+            >
+              Login
+            </Link>
+          </p>
+        </div>
 
           </div>
     </section>
