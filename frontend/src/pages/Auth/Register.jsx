@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react"
-import { Link,  Navigate,  useLocation,useNavigate} from "react-router-dom"
+import { Link, useLocation,useNavigate} from "react-router-dom"
 import {useDispatch,useSelector } from "react-redux"
 import Loader from "../../components/Loader"
 import {setCredentials} from "../../redux/features/auth/authSlice"
