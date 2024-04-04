@@ -35,6 +35,27 @@ const UserList = () => {
         }
     }
 
+    const toggleEdit = (id, username, email) => {
+        setEditableUserId(id)
+        setEditableUserName(username)
+        setEditableUserEmail(email)
+    }
+
+    const updateHandler = async (id) => {
+        try {
+            await updateUser({
+                userId: id,
+                username: editableUserName,
+                email:editableUserEmail,
+            })
+
+            setEditableUserId(null)
+            refetch()
+
+        } catch (error) {
+            toast.error(error.data.message || error.error)
+        }
+    }
 
     return <div className="p-4" >
         <h1 className="mb-4 text-2xl font-semibold text-white">Users</h1>
@@ -72,7 +93,7 @@ const UserList = () => {
                                                     value={editableUserName}
                                                     onChange={e => setEditableUserName(e.target.value)
                                                     }
-                                                    className="w-full p-2 border rounded-lg"
+                                                    className="w-full p-2 text-black border rounded-lg"
                                                 />
 
                                                 <button onClick={() => updateHandler(user._id)}
@@ -99,7 +120,7 @@ const UserList = () => {
                                                     type="text"
                                                     value={editableUserEmail}
                                                     onChange={e => setEditableUserEmail(e.target.value)}
-                                                    className="w-full p-2 border rounded-lg "
+                                                    className="w-full p-2 text-black border rounded-lg"
                                                 />
                                                 
                                                 <button
