@@ -24,7 +24,7 @@ const UserList = () => {
         refetch()
     }, [refetch])
     
-
+    //successfully done
     const deleteHandler = async (id) => {
         if (window.confirm('Are you sure?')) {
             try {
