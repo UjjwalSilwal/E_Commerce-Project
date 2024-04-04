@@ -56,7 +56,7 @@ const Register = () => {
                   
                   <div className="my-[2rem]">
                       <label htmlFor="name" className="block text-sm font-medium text-white">Name</label>
-                      <input type="text" id="name" className="w-full p-2 mt-1 border rounded"
+                      <input type="text" id="name" className="w-full p-2 mt-1 border rounded "
                       placeholder="Enter Name" value={username} onChange={e=>setUserName(e.target.value)} />
                   </div>
 
