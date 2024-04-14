@@ -1,6 +1,5 @@
 import { apiSlice } from "./apiSlice";
 import { CATEGORY_URL } from "../constants";
-import { updateCategory } from "../../../../backend/controllers/categoryController";
 
 // injecting the endpoints
 export const categoryApiSlice = apiSlice.injectEndpoints({
@@ -29,9 +28,7 @@ export const categoryApiSlice = apiSlice.injectEndpoints({
         }),
 
         fetchCategories : builder.query({
-            query:()=>({
-                url:`${CATEGORY_URL}/categories`,
-            })
+            query:()=> `${CATEGORY_URL}/categories`,
         }),
 
     })
