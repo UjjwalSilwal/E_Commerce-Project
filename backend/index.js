@@ -24,7 +24,7 @@ app.use(cookieParser())
 // For user ROutes
 app.use("/api/users", userRoutes);
 // For Category Routes
-app.use('api/category', categoryRoutes)
+app.use("/api/category", categoryRoutes)
 
 
 app.listen(port,()=>console.log(`Server running on port : ${port}`))
