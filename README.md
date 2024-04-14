@@ -1,4 +1,4 @@
 # E_Commerce Project by MERN stack
  learning from YOUTUBE tutorial :
 
- ###### [https://youtu.be/KXzc-fTFIRE?si=7Oy5rw8G7mYTtiW7]
+ ###### [https://youtu.be/p2TmwhQm-OU?si=KaMbL58X6gbzpR8E]
