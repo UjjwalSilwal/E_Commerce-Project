@@ -8,12 +8,13 @@ import {
 
 import { toast } from 'react-toastify'
 import CategoryForm from '../../components/CategoryForm'
+import Modal from '../../components/Modal'
 
 const CategoryList = () => {
     const {data : categories} =  useFetchCategoriesQuery()
     const [name, setName] = useState('')
     const [selectedCategory, setselectedCategory] = useState(null)
-    const [updateName, setUpdateName] = useState('')
+    const [updatingName, setUpdatingName] = useState('')
     const [modelVisible, setModelVisible] = useState(false)
         
     const [createCategory] = useCreateCategoryMutation()
@@ -42,6 +43,34 @@ const CategoryList = () => {
         }
       };
     
+    const handleUpdateCategory = async (e)=> {
+        e.preventDefault()
+
+        if(!updatingName){
+            toast.error('Category name is required')
+            return
+        }
+
+        try {
+            const result = await updateCategory({categoryId: selectedCategory._id, 
+                updateCategory:{
+                    name : updatingName
+                } }).unwrap()
+
+                if(result.error){
+                    toast.error(result.error)
+                }else{
+                    toast.success(`${result.name} is updated`)
+                    setselectedCategory(null)
+                    setUpdatingName('')
+                    setModelVisible(false)
+                }
+
+        } catch (error) {
+            console.error(error)
+        }
+
+    }
 
   return (
     <div className='ml-[10rem] flex flex-col md:flex-row'>
@@ -63,8 +92,8 @@ const CategoryList = () => {
                 className="bg-white border border-pink-500 text-pink-500 py-2 px-4 rounded-lg m-3 hover:bg-pink-500 hover:text-white focus:outline-none foucs:ring-2 focus:ring-pink-500 focus:ring-opacity-50"
                 onClick={() => {
                   {
-                    setModalVisible(true);
-                    setSelectedCategory(category);
+                    setModelVisible(true);
+                    setselectedCategory(category);
                     setUpdatingName(category.name);
                   }
                 }}
@@ -75,8 +104,19 @@ const CategoryList = () => {
           ))}
         </div>
 
-        </div>
+            <Modal isOpen={modelVisible} onClose={()=>setModelVisible(false)}>
+                <CategoryForm 
+                value={updatingName} 
+                setValue={value => setUpdatingName(value) } 
+                handleSubmit={handleUpdateCategory}
+                buttonText='Update'
+                handleDelete={handleCreateCategory}
+                />
+            </Modal>
 
+
+
+        </div>
     </div>
   )
 }
