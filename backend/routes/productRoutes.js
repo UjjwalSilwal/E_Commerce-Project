@@ -9,6 +9,7 @@ import { addProduct ,
         fetchProducts,
         fetchProductById,
         fetchAllProducts,
+        addProductReview,
 } from '../controllers/productController.js'
 
 import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware.js'
@@ -17,9 +18,15 @@ import checkId from '../middlewares/checkId.js'
 // formiddable : because we are going to work with the FORM data
 router.route('/').get(fetchProducts).post(authenticate, authorizeAdmin,formidable(), addProduct)
 
+// for client side
 router.route('/allproducts').get(fetchAllProducts)
 
-// for updating the product
+// for reviews
+router
+    .route('/:id/reviews')
+    .post(authenticate, authorizeAdmin, addProductReview)
+
+// for updating the product // for admin
 router
     .route('/:id')
     .get(fetchProductById)
