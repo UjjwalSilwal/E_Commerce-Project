@@ -7,6 +7,7 @@ import { addProduct ,
         updateProductDetails, 
         deleteProduct,
         fetchProducts,
+        fetchProductById,
 } from '../controllers/productController.js'
 
 import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware.js'
@@ -18,6 +19,7 @@ router.route('/').get(fetchProducts).post(authenticate, authorizeAdmin,formidabl
 // for updating the product
 router
     .route('/:id')
+    .get(fetchProductById)
     .put(authenticate,authorizeAdmin,formidable(), updateProductDetails)
     .delete(authenticate,authorizeAdmin,formidable(), deleteProduct)
 
