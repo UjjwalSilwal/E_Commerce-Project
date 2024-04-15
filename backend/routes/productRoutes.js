@@ -11,6 +11,7 @@ import { addProduct ,
         fetchAllProducts,
         addProductReview,
         fetchTopProducts,
+        fetchNewProducts,
 } from '../controllers/productController.js'
 
 import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware.js'
@@ -25,10 +26,12 @@ router.route('/allproducts').get(fetchAllProducts)
 // for reviews
 router
     .route('/:id/reviews')
-    .post(authenticate, authorizeAdmin, addProductReview)
+    .post(authenticate, authorizeAdmin,checkId, addProductReview)
 
 // for fetching the top products by rating
 router.get('/top', fetchTopProducts)
+// for fetching the newest added products
+router.get('/new', fetchNewProducts)
 
 // for updating the product // for admin
 router
