@@ -17,3 +17,8 @@ VS-code:
 Tailwind Css :
     -tailwind css with vite :
         -npm create vite@latest my-project -- --template react
+
+
+To gitignore:
+    git rm --cached <filename>
+    git commit -m "Remove <filename> file from tracking"
