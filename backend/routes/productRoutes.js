@@ -6,13 +6,14 @@ const router = express.Router()
 import { addProduct ,
         updateProductDetails, 
         deleteProduct,
+        fetchProducts,
 } from '../controllers/productController.js'
 
 import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware.js'
 import checkId from '../middlewares/checkId.js'
 
 // formiddable : because we are going to work with the FORM data
-router.route('/').post(authenticate, authorizeAdmin,formidable(), addProduct)
+router.route('/').get(fetchProducts).post(authenticate, authorizeAdmin,formidable(), addProduct)
 
 // for updating the product
 router
