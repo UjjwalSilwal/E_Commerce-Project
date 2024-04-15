@@ -5,6 +5,7 @@ const router = express.Router()
 // controllers
 import { addProduct ,
         updateProductDetails, 
+        deleteProduct,
 } from '../controllers/productController.js'
 
 import { authenticate, authorizeAdmin } from '../middlewares/authMiddleware.js'
@@ -14,6 +15,9 @@ import checkId from '../middlewares/checkId.js'
 router.route('/').post(authenticate, authorizeAdmin,formidable(), addProduct)
 
 // for updating the product
-router.route('/:id').put(authenticate,authorizeAdmin,formidable(), updateProductDetails)
+router
+    .route('/:id')
+    .put(authenticate,authorizeAdmin,formidable(), updateProductDetails)
+    .delete(authenticate,authorizeAdmin,formidable(), deleteProduct)
 
 export default router
