@@ -41,7 +41,11 @@ const ProductUpdate = () => {
             setBrand(productData.brand)
             setImage(productData.image)
         }
+<<<<<<< HEAD
+    },[productData])
+=======
     })
+>>>>>>> ee9be43733a9218ea30ebbb9ae8add42f2d82c30
 
 
   return (
