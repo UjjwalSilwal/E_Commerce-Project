@@ -40,7 +40,9 @@ const ProductUpdate = () => {
             setQuantity(productData.setQuantity)
             setBrand(productData.brand)
             setImage(productData.image)
-        })
+        }
+    },[productData])
+
   return (
     <div>ProductUpdate</div>
   )
