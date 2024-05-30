@@ -8,6 +8,7 @@ import {
     useUpdateUsersMutation,
 }   from "../../redux/api/usersApiSlice"
 import Message from "../../components/Message"
+import AdminMenu from "./AdminMenu"
 
 const UserList = () => {
     
@@ -65,7 +66,7 @@ const UserList = () => {
                 </Message>
               ) : (
                 <div className="flex flex-col md:flex-row">
-                    {/* <AdminMenu */}
+                    <AdminMenu/>
                     <table className="w-full mx-auto text-white md:w-4/5">
                         <thead>
                             <tr>

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import moment from 'moment'
 import { useAllProductsQuery } from "../../redux/api/productApiSlice"
 import AdminMenu from "./AdminMenu"
-import Loader from "../../components/Loader"
+// import Loader from "../../components/Loader"
 
 
 const AllProducts = () => {
@@ -10,7 +10,7 @@ const AllProducts = () => {
     const {data: products, isLoading, isError} = useAllProductsQuery()
 
     if(isLoading){
-        return <Loader/>
+        return <div>Loading...s</div>
     }
 
     if(isError){
