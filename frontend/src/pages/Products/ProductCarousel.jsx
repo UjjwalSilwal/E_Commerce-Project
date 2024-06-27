@@ -53,14 +53,27 @@ const ProductCarousel = () => {
                                         <FaStore className="mr-2 text-white" /> Brand:{brand}
                                     </h1>
                                     <h1 className="flex items-center mb-15 w-[15rem]">
-                                        <FaStore className="mr-2 text-white" /> Added:{" "}{moment(createdAt).fromNow()}
+                                        <FaClock className="mr-2 text-white" /> Added:{" "}{moment(createdAt).fromNow()}
                                     </h1>
                                     <h1 className="flex items-center mb-6 w-[8rem]">
-                                        <FaStore className="mr-2 text-white" /> Reviews:{numReviews}
+                                        <FaStar className="mr-2 text-white" /> Reviews:{" "}{numReviews}
                                     </h1>
                                 </div>
 
-                                
+                                <div className="two" >
+                                    <h1 className="flex items-center mb-6 w-[5rem]">
+                                        <FaStar className="mr-2 text-white "/> Ratings: {Math.round(rating)}
+                                    </h1>
+
+                                    <h1 className="flex items-center mb-6 w-[10rem]">
+                                        <FaShoppingCart className="mr-2 text-white "/> Quantity:{quantity}
+                                    </h1>
+
+                                    <h1 className="flex items-center mb-6 w-[10rem]">
+                                        <FaBox className="mr-2 text-white "/> In Stock:{""}{countInStock}
+                                    </h1>
+                                </div>
+
                             </div>
 
                         </div>
